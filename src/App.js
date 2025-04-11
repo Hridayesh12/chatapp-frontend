@@ -9,7 +9,7 @@ function App() {
 
   const fetchMessages = async () => {
     const res = await axios.get('https://chatapp-backend-three-weld.vercel.app/api/messages');
-    setMessages(res.data);
+    setMessages(res.data.reverse());
   };
 
   const handleDump = async () => {
