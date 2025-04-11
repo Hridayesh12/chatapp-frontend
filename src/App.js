@@ -8,13 +8,13 @@ function App() {
   const [editingText, setEditingText] = useState('');
 
   const fetchMessages = async () => {
-    const res = await axios.get('http://localhost:5000/api/messages');
+    const res = await axios.get('https://chatapp-backend-three-weld.vercel.app/api/messages');
     setMessages(res.data);
   };
 
   const handleDump = async () => {
     if (message.trim()) {
-      await axios.post('http://localhost:5000/api/messages', { text: message });
+      await axios.post('https://chatapp-backend-three-weld.vercel.app/api/messages', { text: message });
       setMessage('');
       fetchMessages();
     }
@@ -27,7 +27,7 @@ function App() {
 
   const handleSave = async () => {
     if (editingText.trim()) {
-      await axios.put(`http://localhost:5000/api/messages/${editingId}`, {
+      await axios.put(`https://chatapp-backend-three-weld.vercel.app/api/messages/${editingId}`, {
         text: editingText,
       });
       setEditingId(null);
@@ -39,7 +39,7 @@ function App() {
   const handleClearAll = async () => {
     const confirmClear = window.confirm('Are you sure you want to delete ALL messages?');
     if (confirmClear) {
-      await axios.delete('http://localhost:5000/api/messages');
+      await axios.delete('https://chatapp-backend-three-weld.vercel.app/api/messages');
       fetchMessages();
     }
   };
