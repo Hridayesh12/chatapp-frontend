@@ -51,18 +51,18 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
       <header className="bg-white shadow p-4 text-center sticky top-0 z-10">
-        <h1 className="text-2xl font-bold">Message Dump</h1>
+        <h1 className="text-2xl font-bold">Notes App</h1>
       </header>
 
       <main className="flex-1 overflow-y-auto p-4">
         {messages.length === 0 ? (
-          <p className="text-center text-gray-500">No messages yet.</p>
+          <p className="text-center text-gray-500">No notes yet.</p>
         ) : (
           <div className="space-y-3">
             {messages.map((msg) => (
               <div
                 key={msg._id}
-                className="bg-white rounded-lg p-3 shadow-md max-w-md mx-auto"
+                className="bg-white rounded-lg p-3 shadow-md max-w-full mx-auto"
               >
                 {editingId === msg._id ? (
                   <>
@@ -101,7 +101,7 @@ function App() {
           <textarea
             className="flex-1 p-2 border rounded resize-none"
             rows="2"
-            placeholder="Type your message..."
+            placeholder="Type your notes..."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
@@ -110,7 +110,7 @@ function App() {
               onClick={handleDump}
               className="bg-blue-600 text-white px-4 py-2 rounded whitespace-nowrap"
             >
-              Send
+              Save
             </button>
             <button
               onClick={handleClearAll}
