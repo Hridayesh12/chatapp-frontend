@@ -7,6 +7,7 @@ const Roadmap = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [roadmaps, setRoadmaps] = useState([]);
+  const [expandedId, setExpandedId] = useState(null); // For accordion
 
   const fetchAll = async () => {
     try {
@@ -54,6 +55,10 @@ const Roadmap = () => {
     fetchAll();
   }, []);
 
+  const toggleExpand = (id) => {
+    setExpandedId((prevId) => (prevId === id ? null : id));
+  };
+
   return (
     <div className="min-h-screen bg-[#0f0f0f] text-gray-200 px-4 py-6 md:px-8">
       <div className="max-w-4xl mx-auto">
@@ -100,30 +105,46 @@ const Roadmap = () => {
           </div>
         </div>
 
-        {/* Roadmap List */}
-        <div className="space-y-6">
+        {/* Accordion-style Roadmap List */}
+        <div className="space-y-4">
           {roadmaps.length === 0 ? (
             <p className="text-gray-400 text-center">No roadmaps found.</p>
           ) : (
-            roadmaps.map((roadmap) => (
-              <div
-                key={roadmap._id}
-                className="bg-[#1a1a1a] border border-gray-700 p-4 md:p-5 rounded-lg"
-              >
-                <h2 className="text-lg md:text-xl font-semibold text-white mb-2">
-                  {roadmap.title}
-                </h2>
-                <pre className="whitespace-pre-wrap text-gray-300">
-                  {roadmap.description}
-                </pre>
-                <button
-                  onClick={() => deleteById(roadmap._id)}
-                  className="mt-3 text-sm text-red-400 hover:text-red-500"
+            roadmaps.map((roadmap) => {
+              const isExpanded = expandedId === roadmap._id;
+              return (
+                <div
+                  key={roadmap._id}
+                  className="bg-[#1a1a1a] border border-gray-700 p-4 md:p-5 rounded-lg"
                 >
-                  Delete
-                </button>
-              </div>
-            ))
+                  <div
+                    className="flex items-center justify-between cursor-pointer"
+                    onClick={() => toggleExpand(roadmap._id)}
+                  >
+                    <h2 className="text-lg md:text-xl font-semibold text-white">
+                      {roadmap.title}
+                    </h2>
+                    <span className="text-gray-400 text-sm">
+                      {isExpanded ? "▲ Hide" : "▼ Show"}
+                    </span>
+                  </div>
+
+                  {isExpanded && (
+                    <div className="mt-3">
+                      <pre className="whitespace-pre-wrap text-gray-300">
+                        {roadmap.description}
+                      </pre>
+                      <button
+                        onClick={() => deleteById(roadmap._id)}
+                        className="mt-2 text-sm text-red-400 hover:text-red-500"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  )}
+                </div>
+              );
+            })
           )}
         </div>
       </div>
