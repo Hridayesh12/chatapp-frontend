@@ -83,7 +83,7 @@ const YouTubePlayer = ({ videoId }) => {
 
   // Backend proxy URL
   const backendStreamUrl = videoId
-    ? `https://chatapp-backend-three-weld.vercel.app/watch/${videoId}`
+    ? `http://localhost:7000/watch/${videoId}`
     : null;
 
   return (

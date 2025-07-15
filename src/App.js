@@ -143,25 +143,30 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import YoutubeComponent from "./components/Youtube/YoutubeComponent";
 import Roadmap from "./components/RoadMap/Roadmap";
 import Home from "./components/Home";
+import ProjectManager from "./components/Projects/ProjectManager";
 
 const App = () => {
   return (
     <Router>
       <div className="min-h-screen bg-[#121212] text-white">
+        {/* Navbar */}
         <nav className="bg-[#1f1f1f] p-4 shadow-md flex items-center justify-between">
           <h1 className="text-xl font-bold">📚 Tech Explorer</h1>
           <div className="flex space-x-6 text-sm">
             <Link to="/" className="hover:text-blue-400">Home</Link>
             <Link to="/articles" className="hover:text-blue-400">Research Article</Link>
             <Link to="/technologies" className="hover:text-blue-400">More About Technologies</Link>
+            <Link to="/projects" className="hover:text-blue-400">📂 Projects</Link> {/* ✅ added */}
           </div>
         </nav>
 
+        {/* Routes */}
         <div className="p-6">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/articles" element={<YoutubeComponent />} />
             <Route path="/technologies" element={<Roadmap />} />
+            <Route path="/projects" element={<ProjectManager />} /> {/* ✅ added */}
           </Routes>
         </div>
       </div>
@@ -170,4 +175,5 @@ const App = () => {
 };
 
 export default App;
+
 
