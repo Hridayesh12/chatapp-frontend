@@ -83,7 +83,7 @@ const YouTubePlayer = ({ videoId }) => {
 
   // Backend proxy URL
   const backendStreamUrl = videoId
-    ? `http://localhost:7000/watch/${videoId}`
+    ? `http://localhost:5000/watch/${videoId}`
     : null;
 
   return (
