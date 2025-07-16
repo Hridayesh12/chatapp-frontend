@@ -66,6 +66,7 @@
 import React, { useState, useEffect } from "react";
 import { ResizableBox } from "react-resizable";
 import "react-resizable/css/styles.css";
+import VideoPlayer from "./VideoPlayer";
 
 const YouTubePlayer = ({ videoId }) => {
   const [width, setWidth] = useState(480);
@@ -83,9 +84,28 @@ const YouTubePlayer = ({ videoId }) => {
 
   // Backend proxy URL
   const backendStreamUrl = videoId
-    ? `http://localhost:5000/watch/${videoId}`
+    ? `https://fixed-consistent-goat-middle.trycloudflare.com/hls/${videoId}`
     : null;
+  const [m3u8Url, setM3u8Url] = useState(null);
 
+  useEffect(() => {
+    const generateStream = async () => {
+      try {
+        const res = await fetch(
+          `https://fixed-consistent-goat-middle.trycloudflare.com/hls/${videoId}`
+        );
+        const data = await res.json();
+        console.log("Data", data);
+        // Append full cloudflare path to returned relative path
+        const fullUrl = `https://fixed-consistent-goat-middle.trycloudflare.com${data.m3u8}`;
+        setM3u8Url(fullUrl);
+      } catch (err) {
+        console.error("Failed to generate HLS stream", err);
+      }
+    };
+
+    generateStream();
+  }, [videoId]);
   return (
     <div className="flex h-screen bg-[#1e1e1e] text-white overflow-hidden">
       {/* Left: Fake Disguise Content */}
@@ -113,14 +133,18 @@ const YouTubePlayer = ({ videoId }) => {
         <div className="absolute left-0 top-0 h-full w-1 bg-gray-600 opacity-40 hover:opacity-100 cursor-col-resize z-50" />
 
         {backendStreamUrl ? (
-          <video
-            controls
-            className="w-full h-full"
-            autoPlay
-            muted
-            preload="auto"
-            src={backendStreamUrl}
-          />
+          // <video
+          //   className="w-full h-full"
+          //   controls
+          //   autoPlay
+          //   muted
+          //   preload="auto"
+          //   src={backendStreamUrl}
+          // />
+          <>
+            Watching Video : {videoId}
+            <VideoPlayer m3u8Url={m3u8Url} />
+          </>
         ) : (
           <div className="text-gray-400 p-4">No video selected</div>
         )}
