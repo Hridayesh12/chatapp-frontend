@@ -84,7 +84,7 @@ const YouTubePlayer = ({ videoId }) => {
 
   // Backend proxy URL
   const backendStreamUrl = videoId
-    ? `https://poultry-sims-campaign-panic.trycloudflare.com/hls/${videoId}`
+    ? `hhttps://mobility-monsters-make-priced.trycloudflare.com/hls/${videoId}`
     : null;
   const [m3u8Url, setM3u8Url] = useState(null);
 
@@ -92,12 +92,12 @@ const YouTubePlayer = ({ videoId }) => {
     const generateStream = async () => {
       try {
         const res = await fetch(
-          `https://poultry-sims-campaign-panic.trycloudflare.com/hls/${videoId}`
+          `hhttps://mobility-monsters-make-priced.trycloudflare.com/hls/${videoId}`
         );
         const data = await res.json();
         console.log("Data", data);
         // Append full cloudflare path to returned relative path
-        const fullUrl = `https://poultry-sims-campaign-panic.trycloudflare.com${data.m3u8}`;
+        const fullUrl = `hhttps://mobility-monsters-make-priced.trycloudflare.com${data.m3u8}`;
         setM3u8Url(fullUrl);
       } catch (err) {
         console.error("Failed to generate HLS stream", err);

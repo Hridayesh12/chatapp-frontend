@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import moment from "moment";
 
-const API = "https://chatapp-backend-three-weld.vercel.app/api/projects"; // adjust this as needed
+const API =
+  "https://mobility-monsters-make-priced.trycloudflare.com/api/projects"; // adjust this as needed
 
 const ProjectManager = () => {
   const [projects, setProjects] = useState([]);

@@ -8,13 +8,13 @@
 //   const [editingText, setEditingText] = useState('');
 
 //   const fetchMessages = async () => {
-//     const res = await axios.get('https://chatapp-backend-three-weld.vercel.app/api/messages');
+//     const res = await axios.get('https://mobility-monsters-make-priced.trycloudflare.com/api/messages');
 //     setMessages(res.data.reverse());
 //   };
 
 //   const handleDump = async () => {
 //     if (message.trim()) {
-//       await axios.post('https://chatapp-backend-three-weld.vercel.app/api/messages', { text: message });
+//       await axios.post('https://mobility-monsters-make-priced.trycloudflare.com/api/messages', { text: message });
 //       setMessage('');
 //       fetchMessages();
 //     }
@@ -27,7 +27,7 @@
 
 //   const handleSave = async () => {
 //     if (editingText.trim()) {
-//       await axios.put(`https://chatapp-backend-three-weld.vercel.app/api/messages/${editingId}`, {
+//       await axios.put(`https://mobility-monsters-make-priced.trycloudflare.com/api/messages/${editingId}`, {
 //         text: editingText,
 //       });
 //       setEditingId(null);
@@ -39,7 +39,7 @@
 //   const handleClearAll = async () => {
 //     const confirmClear = window.confirm('Are you sure you want to delete ALL messages?');
 //     if (confirmClear) {
-//       await axios.delete('https://chatapp-backend-three-weld.vercel.app/api/messages');
+//       await axios.delete('https://mobility-monsters-make-priced.trycloudflare.com/api/messages');
 //       fetchMessages();
 //     }
 //   };
