@@ -7,6 +7,17 @@
   pointer-events: none;
 }
 
+.react-resizable-handle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 8px;
+  height: 100%;
+  background-color: #3a3a3a; /* subtle dark grey */
+  cursor: col-resize;
+  z-index: 50;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
